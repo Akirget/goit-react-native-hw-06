@@ -28,7 +28,7 @@ export const CameraScreen = ({ navigation }) => {
       try {
         const { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== "granted") {
-          Alert.alert("Permission to access location was denied");
+          Alert.alert("Не удалось определить местоположение");
         }
 
         const location = await Location.getCurrentPositionAsync({});
@@ -61,10 +61,10 @@ export const CameraScreen = ({ navigation }) => {
   }, []);
 
   if (hasCameraPermission === undefined) {
-    return <Text>Requesting permissions...</Text>;
+    return <Text>Запрос разрешения...</Text>;
   } else if (!hasCameraPermission) {
     return Alert.alert(
-      "Permission for camera not granted. Please change this in settings."
+      "Разрешение для камеры не предоставлено. Пожалуйста, измените это в настройках."
     );
   }
 
@@ -79,18 +79,14 @@ export const CameraScreen = ({ navigation }) => {
 
   if (photo) {
     const savePic = () => {
-      //save to phone's gallery
-      //   MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
-      //     setPhoto(undefined);
-      //   });
       shareAsync(photo.uri).then(() => {
         setPhoto(undefined);
       });
-      navigation.navigate("Create Post", { photo, location, regionName });
-      setTimeout(() => {
-        setPhoto(undefined);
-        setLocation(null);
-      }, 400);
+      navigation.navigate("Создать публикацию", {
+        photo,
+        location,
+        regionName,
+      });
     };
 
     return (
@@ -99,17 +95,17 @@ export const CameraScreen = ({ navigation }) => {
         <View style={styles.buttonContainer}>
           {hasMediaLibraryPermission ? (
             <TouchableOpacity
-              style={{ ...styles.button, marginRight: 8 }}
+              style={{ ...styles.button, marginRight: 30 }}
               onPress={savePic}
             >
-              <Text style={styles.textButton}>Save</Text>
+              <Text style={styles.textButton}>Сохранить</Text>
             </TouchableOpacity>
           ) : undefined}
           <TouchableOpacity
             style={styles.button}
             onPress={() => setPhoto(undefined)}
           >
-            <Text style={styles.textButton}>Discard</Text>
+            <Text style={styles.textButton}>Переснять</Text>
           </TouchableOpacity>
         </View>
       </View>

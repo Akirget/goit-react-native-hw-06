@@ -62,18 +62,18 @@ export const CommentsScreen = ({ route }) => {
       });
       await updateDoc(postDocRef, { commentsQuantity: commentsQuantity + 1 });
     } catch (error) {
-      console.log("error-message.upoload-comment", error.message);
+      console.log("error-message", error.message);
     }
   };
 
   const onSendComment = () => {
     if (!comment.trim()) {
-      Alert.alert(`Enter your comment, please`);
+      Alert.alert(`Введите свой комментарий, пожалуйста`);
       return;
     }
     uploadCommentToServer();
     Keyboard.dismiss();
-    Alert.alert(`Your comment has been sent!`);
+    Alert.alert(`Ваш комментарий успешно отправлен!`);
     setComment("");
   };
 
@@ -137,7 +137,7 @@ export const CommentsScreen = ({ route }) => {
               <TextInput
                 value={comment}
                 style={styles.input}
-                placeholder="Leave a comment"
+                placeholder="Комментировать..."
                 cursorColor={"#BDBDBD"}
                 placeholderTextColor={"#BDBDBD"}
                 onChangeText={commentHandler}

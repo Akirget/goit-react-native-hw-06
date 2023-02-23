@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 
 import { authSignInUser } from "../redux/auth/authOperations";
 
-export const LoginScreen = ({navigation}) => {
+export const LoginScreen = ({ navigation }) => {
   const [fontsLoaded] = useFonts({
     Roboto: require("../assets/fonts/Roboto-Regular.ttf"),
     RobotoMedium: require("../assets/fonts/Roboto-Medium.ttf"),
@@ -61,14 +61,14 @@ export const LoginScreen = ({navigation}) => {
 
   const onLogin = () => {
     if (!email.trim() || !password.trim()) {
-      Alert.alert(`All fields must be completed!`);
+      Alert.alert(`Все поля должны быть заполнены!`);
       return;
     }
-    Alert.alert(`Welcome, ${email}!`);
+    Alert.alert(`${email}, успешно вошли!`);
     const currentUser = {
       email,
       password,
-    }
+    };
     console.log(currentUser);
     dispatch(authSignInUser(currentUser));
     setEmail("");
@@ -122,10 +122,9 @@ export const LoginScreen = ({navigation}) => {
                   marginTop: windowWidth > 500 ? 100 : 293,
                 }}
               >
-
                 <View style={{ width: windowWidth - 16 * 2 }}>
                   <Text style={{ ...styles.title, fontFamily: "RobotoMedium" }}>
-                    Login
+                    Войти
                   </Text>
 
                   <TextInput
@@ -137,8 +136,8 @@ export const LoginScreen = ({navigation}) => {
                     onFocus={() => setIsFocusedEmail(true)}
                     onBlur={() => setIsFocusedEmail(false)}
                     value={email}
-                    placeholder="Email"
-                    textContentType={'emailAddress'}
+                    placeholder="Адрес электронной почты"
+                    textContentType={"emailAddress"}
                     cursorColor={"#BDBDBD"}
                     placeholderTextColor={"#BDBDBD"}
                     onChangeText={emailHandler}
@@ -153,8 +152,8 @@ export const LoginScreen = ({navigation}) => {
                     onFocus={() => setIsFocusedPassword(true)}
                     onBlur={() => setIsFocusedPassword(false)}
                     value={password}
-                    placeholder="Password"
-                    textContentType={'password'}
+                    placeholder="Пароль"
+                    textContentType={"password"}
                     cursorColor={"#BDBDBD"}
                     placeholderTextColor={"#BDBDBD"}
                     secureTextEntry={isPasswordHidden}
@@ -172,19 +171,21 @@ export const LoginScreen = ({navigation}) => {
                         fontFamily: "Roboto",
                       }}
                     >
-                      {isPasswordHidden ? "Show" : "Hide"}
+                      {isPasswordHidden ? "Показать" : "Скрыть"}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.button} onPress={onLogin}>
                     <Text
                       style={{ ...styles.textButton, fontFamily: "Roboto" }}
                     >
-                      Sign In
+                      Войти
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => navigation.navigate("Registration")}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Registration")}
+                  >
                     <Text style={{ ...styles.link, fontFamily: "Roboto" }}>
-                      Don't have an account? Register
+                      Нет аккаунта? Зарегистрироваться
                     </Text>
                   </TouchableOpacity>
                 </View>

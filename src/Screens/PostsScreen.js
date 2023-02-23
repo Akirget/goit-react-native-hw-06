@@ -48,7 +48,7 @@ export const PostsScreen = ({ route, navigation }) => {
         likeStatus: true,
       });
     } catch (error) {
-      console.log("error-message.add-like", error.message);
+      console.log("error-message", error.message);
     }
   };
 
@@ -60,7 +60,7 @@ export const PostsScreen = ({ route, navigation }) => {
         likeStatus: false,
       });
     } catch (error) {
-      console.log("error-message.add-like", error.message);
+      console.log("error-message", error.message);
     }
   };
 
@@ -71,7 +71,7 @@ export const PostsScreen = ({ route, navigation }) => {
         setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       });
     } catch (error) {
-      console.log("error-message.get-posts", error.message);
+      console.log("error-message", error.message);
     }
   };
 
@@ -123,7 +123,7 @@ export const PostsScreen = ({ route, navigation }) => {
             }}
           >
             <Text style={{ ...styles.textUserName, fontSize: 16 }}>
-              No posts yet
+              Снейчас у Вас нет постов
             </Text>
           </View>
         }
@@ -183,12 +183,20 @@ export const PostsScreen = ({ route, navigation }) => {
                   <Text style={styles.cardText}>{item.commentsQuantity}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={ item.likeStatus ? () => removeLike(item.id, item.likesQuantity, item.likeStatus) : () => addLike(item.id, item.likesQuantity, item.likeStatus)}
+                  onPress={
+                    item.likeStatus
+                      ? () =>
+                          removeLike(
+                            item.id,
+                            item.likesQuantity,
+                            item.likeStatus
+                          )
+                      : () =>
+                          addLike(item.id, item.likesQuantity, item.likeStatus)
+                  }
                 >
                   <View style={{ ...styles.wrapper, marginLeft: 24 }}>
-                    <Like
-                      fill={!item.likeStatus ? "#BDBDBD" : "#FF6C00"}
-                    />
+                    <Like fill={!item.likeStatus ? "#BDBDBD" : "#FF6C00"} />
                     <Text style={styles.cardText}>{item.likesQuantity}</Text>
                   </View>
                 </TouchableOpacity>
@@ -196,7 +204,7 @@ export const PostsScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 style={styles.wrapper}
                 onPress={() =>
-                  navigation.navigate("Map", { location: item.location })
+                  navigation.navigate("Карта", { location: item.location })
                 }
               >
                 <Location />

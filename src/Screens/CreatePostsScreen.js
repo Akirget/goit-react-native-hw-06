@@ -88,24 +88,24 @@ export const CreatePostsScreen = ({ route, navigation }) => {
 
   const onPublish = () => {
     if (!title.trim() || !location) {
-      Alert.alert(`All fields must be completed!`);
+      Alert.alert(`Все поля должны быть заполнены!`);
       return;
     }
-    Alert.alert(`Post successfully created!`);
+    Alert.alert(`Ваша публикация прошла успешна`);
     uploadPostToServer();
     setImage();
     setTitle("");
     setLocation("");
     setRegionName("");
     Keyboard.dismiss();
-    navigation.navigate("Posts");
+    navigation.navigate("Публикации");
   };
 
   const onDelete = () => {
     setTitle("");
     setLocation("");
     setImage();
-    Alert.alert(`Successfully deleted!`);
+    Alert.alert(`Удаление прошло успешно`);
     Keyboard.dismiss();
   };
   useEffect(() => {
@@ -139,25 +139,8 @@ export const CreatePostsScreen = ({ route, navigation }) => {
       : setIsDisabledTrash(true);
   }, [title, location, image]);
 
-  // useEffect(() => {
-  //   async function prepare() {
-  //     await SplashScreen.preventAutoHideAsync();
-  //   }
-  //   prepare();
-  // }, []);
-
-  // const onLayout = useCallback(async () => {
-  //   if (fontsLoaded) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [fontsLoaded]);
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
-
   return (
     <KeyboardAvoidingView
-      // onLayout={onLayout}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
@@ -189,13 +172,13 @@ export const CreatePostsScreen = ({ route, navigation }) => {
               >
                 <TouchableOpacity>
                   <DownloadPhoto
-                    onPress={() => navigation.navigate("Camera")}
+                    onPress={() => navigation.navigate("Камера")}
                   />
                 </TouchableOpacity>
               </View>
             )}
             <View style={{ width: "100%", alignItems: "flex-start" }}>
-              <Text style={styles.text}>Download photo</Text>
+              <Text style={styles.text}>Загрузите фото</Text>
             </View>
             <View style={{ width: windowWidth - 16 * 2 }}>
               <TextInput
@@ -207,7 +190,7 @@ export const CreatePostsScreen = ({ route, navigation }) => {
                 onFocus={() => setIsFocusedTitle(true)}
                 onBlur={() => setIsFocusedTitle(false)}
                 value={title}
-                placeholder="Title..."
+                placeholder="Название..."
                 cursorColor={"#BDBDBD"}
                 placeholderTextColor={"#BDBDBD"}
                 onChangeText={titleHandler}
@@ -227,11 +210,18 @@ export const CreatePostsScreen = ({ route, navigation }) => {
                     : ""
                 }
                 textContentType={"location"}
-                placeholder="Location"
+                placeholder="Местность..."
                 cursorColor={"#BDBDBD"}
                 placeholderTextColor={"#BDBDBD"}
               ></TextInput>
-              <Location style={styles.locationIcon} />
+              <Location
+                style={styles.locationIcon}
+                onPress={() =>
+                  navigation.navigate("Карта", {
+                    location,
+                  })
+                }
+              />
             </View>
             <TouchableOpacity
               style={{
@@ -249,7 +239,7 @@ export const CreatePostsScreen = ({ route, navigation }) => {
                   fontFamily: "Roboto",
                 }}
               >
-                Publish
+                Опубликовать
               </Text>
             </TouchableOpacity>
             <TouchableOpacity

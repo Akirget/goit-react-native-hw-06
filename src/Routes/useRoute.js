@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Home } from "../Screens/Home";
 import { RegistrationScreen } from "../Screens/RegistrationScreen";
 import { LoginScreen } from "../Screens/LoginScreen";
-import {CreatePostsScreen} from '../Screens/CreatePostsScreen';
+import { CreatePostsScreen } from "../Screens/CreatePostsScreen";
 import { CommentsScreen } from "../Screens/CommentsScreen";
 import { MapScreen } from "../Screens/MapScreen";
 import { CameraScreen } from "../Screens/CameraScreen";
@@ -26,22 +26,22 @@ export const useRoute = (isLogin) => {
           headerTitleStyle: { color: "#212121", fontSize: 17 },
           headerTitleAlign: "center",
         }}
-        name="Comments"
+        name="Комментарии"
         component={CommentsScreen}
       ></MainStack.Screen>
       <MainStack.Screen
-        options={{ headerShown: true }}
-        name="Create Post"
+          options={{ headerShown: true, headerTitleAlign: "center" }}
+        name="Создать публикацию"
         component={CreatePostsScreen}
       ></MainStack.Screen>
       <MainStack.Screen
         options={{ headerShown: true }}
-        name="Camera"
+        name="Камера"
         component={CameraScreen}
       ></MainStack.Screen>
       <MainStack.Screen
-        options={{ headerShown: true }}
-        name="Map"
+        options={{ headerShown: true, headerTitleAlign: "center" }}
+        name="Карта"
         component={MapScreen}
       ></MainStack.Screen>
     </MainStack.Navigator>

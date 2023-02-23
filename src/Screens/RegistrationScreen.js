@@ -64,7 +64,9 @@ export const RegistrationScreen = ({ navigation }) => {
         await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (permissionResult.granted === false) {
-        alert("You've refused to allow this appp to access your photos!");
+        alert(
+          "Вы отказались разрешить этому приложению доступ к вашим фотографиям"
+        );
         return;
       }
 
@@ -121,7 +123,7 @@ export const RegistrationScreen = ({ navigation }) => {
   const onSignup = async () => {
     try {
       if (!login.trim() || !email.trim() || !password.trim()) {
-        Alert.alert(`All fields must be completed!`);
+        Alert.alert(`Все поля должны быть заполнены!`);
         return;
       }
 
@@ -233,7 +235,7 @@ export const RegistrationScreen = ({ navigation }) => {
                 )}
                 <View style={{ width: windowWidth - 16 * 2 }}>
                   <Text style={{ ...styles.title, fontFamily: "RobotoMedium" }}>
-                    Registration
+                    Регистрация
                   </Text>
                   <TextInput
                     style={{
@@ -244,7 +246,7 @@ export const RegistrationScreen = ({ navigation }) => {
                     onFocus={() => setIsFocusedLogin(true)}
                     onBlur={() => setIsFocusedLogin(false)}
                     value={login}
-                    placeholder="Login"
+                    placeholder="Логин"
                     textContentType={"emailAddress"}
                     cursorColor={"#BDBDBD"}
                     placeholderTextColor={"#BDBDBD"}
@@ -259,7 +261,7 @@ export const RegistrationScreen = ({ navigation }) => {
                     onFocus={() => setIsFocusedEmail(true)}
                     onBlur={() => setIsFocusedEmail(false)}
                     value={email}
-                    placeholder="Email"
+                    placeholder="Адрес электронной почты"
                     textContentType={"emailAddress"}
                     cursorColor={"#BDBDBD"}
                     placeholderTextColor={"#BDBDBD"}
@@ -276,7 +278,7 @@ export const RegistrationScreen = ({ navigation }) => {
                     onBlur={() => setIsFocusedPassword(false)}
                     value={password}
                     textContentType={"password"}
-                    placeholder="Password"
+                    placeholder="Пароль"
                     cursorColor={"#BDBDBD"}
                     placeholderTextColor={"#BDBDBD"}
                     secureTextEntry={isPasswordHidden}
@@ -294,21 +296,21 @@ export const RegistrationScreen = ({ navigation }) => {
                         fontFamily: "Roboto",
                       }}
                     >
-                      {isPasswordHidden ? "Show" : "Hide"}
+                      {isPasswordHidden ? "Показать" : "Скрыть"}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.button} onPress={onSignup}>
                     <Text
                       style={{ ...styles.textButton, fontFamily: "Roboto" }}
                     >
-                      Sign Up
+                      Зарегистрироваться
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Login")}
                   >
                     <Text style={{ ...styles.link, fontFamily: "Roboto" }}>
-                      Have already an account? Sign in
+                      Уже есть аккаунт? Войти
                     </Text>
                   </TouchableOpacity>
                 </View>

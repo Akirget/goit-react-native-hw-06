@@ -56,7 +56,7 @@ export const ProfileScreen = ({ navigation }) => {
         );
       });
     } catch (error) {
-      console.log("error-message.get-posts", error.message);
+      console.log("error-message", error.message);
     }
   };
 
@@ -116,7 +116,7 @@ export const ProfileScreen = ({ navigation }) => {
               }}
             >
               <Text style={{ ...styles.textUserName, fontSize: 16 }}>
-                No posts yet
+                У Вас нет постов
               </Text>
             </View>
           }
@@ -195,25 +195,29 @@ export const ProfileScreen = ({ navigation }) => {
                   <TouchableOpacity
                     style={styles.cardWrapper}
                     onPress={() =>
-                      navigation.navigate("Comments", {
+                      navigation.navigate("Комментарии", {
                         postId: item.id,
                         postPhoto: item.photo,
                         commentsQuantity: item.commentsQuantity,
                       })
                     }
                   >
-                    <Message fill={item.commentsQuantity === 0 ? "#BDBDBD" : "#FF6C00"}/>
+                    <Message
+                      fill={item.commentsQuantity === 0 ? "#BDBDBD" : "#FF6C00"}
+                    />
                     <Text style={styles.cardText}>{item.commentsQuantity}</Text>
                   </TouchableOpacity>
                   <View style={{ ...styles.cardWrapper, marginLeft: 24 }}>
-                    <Like fill={item.likesQuantity === 0 ? "#BDBDBD" : "#FF6C00"} />
+                    <Like
+                      fill={item.likesQuantity === 0 ? "#BDBDBD" : "#FF6C00"}
+                    />
                     <Text style={styles.cardText}>{item.likesQuantity}</Text>
                   </View>
                 </View>
                 <TouchableOpacity
                   style={styles.cardWrapper}
                   onPress={() =>
-                    navigation.navigate("Map", { location: item.location })
+                    navigation.navigate("Карта", { location: item.location })
                   }
                 >
                   <Location />
