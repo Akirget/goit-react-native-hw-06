@@ -170,7 +170,7 @@ export const PostsScreen = ({ route, navigation }) => {
                 <TouchableOpacity
                   style={styles.wrapper}
                   onPress={() =>
-                    navigation.navigate("Comments", {
+                    navigation.navigate("Комментарии", {
                       postId: item.id,
                       postPhoto: item.photo,
                       commentsQuantity: item.commentsQuantity,

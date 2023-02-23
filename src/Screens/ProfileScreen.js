@@ -31,10 +31,8 @@ export const ProfileScreen = ({ navigation }) => {
     RobotoBold: require("../assets/fonts/Roboto-Bold.ttf"),
   });
 
-  const [windowWidth, setWindowWidth] = useState(
-    Dimensions.get("window").width
-  );
-  const [windowHeight, setWindowHeight] = useState(
+  const [phoneWidth, setPhoneWidth] = useState(Dimensions.get("window").width);
+  const [phoneHeight, setPhoneHeight] = useState(
     Dimensions.get("window").height
   );
 
@@ -67,9 +65,9 @@ export const ProfileScreen = ({ navigation }) => {
   useEffect(() => {
     const onChange = () => {
       const width = Dimensions.get("window").width;
-      setWindowWidth(width);
+      setPhoneWidth(width);
       const height = Dimensions.get("window").height;
-      setWindowHeight(height);
+      setPhoneHeight(height);
     };
     const dimensionsHandler = Dimensions.addEventListener("change", onChange);
 
@@ -97,8 +95,8 @@ export const ProfileScreen = ({ navigation }) => {
       <ImageBackground
         style={{
           ...styles.imageBG,
-          width: windowWidth,
-          height: windowHeight,
+          width: phoneWidth,
+          height: phoneHeight,
         }}
         source={require("../assets/images/imageBG.jpg")}
       >
@@ -112,7 +110,7 @@ export const ProfileScreen = ({ navigation }) => {
                 alignItems: "center",
                 padding: 16,
                 height: 240,
-                width: windowWidth,
+                width: phoneWidth,
               }}
             >
               <Text style={{ ...styles.textUserName, fontSize: 16 }}>
@@ -124,14 +122,14 @@ export const ProfileScreen = ({ navigation }) => {
             <View
               style={{
                 ...styles.headerWrapper,
-                marginTop: windowWidth > 500 ? 100 : 147,
-                width: windowWidth,
+                marginTop: phoneWidth > 500 ? 100 : 147,
+                width: phoneWidth,
               }}
             >
               <View
                 style={{
                   ...styles.imageThumb,
-                  left: (windowWidth - 120) / 2,
+                  left: (phoneWidth - 120) / 2,
                 }}
               >
                 <Image
@@ -148,7 +146,7 @@ export const ProfileScreen = ({ navigation }) => {
               <View
                 style={{
                   ...styles.userTitleWrapper,
-                  width: windowWidth - 16 * 2,
+                  width: phoneWidth - 16 * 2,
                 }}
               >
                 <Text
@@ -164,28 +162,26 @@ export const ProfileScreen = ({ navigation }) => {
             <View
               style={{
                 ...styles.cardContainer,
-                width: windowWidth,
+                width: phoneWidth,
               }}
             >
               <Image
                 source={{ uri: item.photo }}
                 style={{
                   ...styles.cardImage,
-                  width: windowWidth - 16 * 2,
+                  width: phoneWidth - 16 * 2,
                 }}
               />
               <Text
                 style={{
                   ...styles.cardTitle,
-                  width: windowWidth - 16 * 2,
+                  width: phoneWidth - 16 * 2,
                   fontFamily: "RobotoMedium",
                 }}
               >
                 {item.title}
               </Text>
-              <View
-                style={{ ...styles.cardThumb, width: windowWidth - 16 * 2 }}
-              >
+              <View style={{ ...styles.cardThumb, width: phoneWidth - 16 * 2 }}>
                 <View
                   style={{
                     flexDirection: "row",
